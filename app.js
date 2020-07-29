@@ -1,6 +1,9 @@
 var express = require('express');
-var serveIndex = require('serve-index')
+var bodyParser = require('body-parser')
 var app = express()
-    .use( express.static(__dirname + '/public') )
-    .use( serveIndex(__dirname + '/public', {}) )
+    .use( bodyParser() ).use(function (req, res) {
+        console.log("body", req.body)
+        console.log("foo", req.body.foo)
+        res.send(req.body)
+    })
     .listen(3000);
